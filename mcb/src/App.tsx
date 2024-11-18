@@ -1,31 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import ChatBot from 'react-chatbotify';
+import React from "react";
+import MyChatBot from "./MyChatBot";
 
-
-const MyComponent = () => {
-  const settings = {
-    isOpen: true,
-    general: {
-      primaryColor: '#42b0c5',
-      secondaryColor: '#491d8d',
-      fontFamily: 'Arial, sans-serif',
-      embedded: true
-    },
-    audio: {
-      disabled: false,
-    },
-    chatHistory: {
-      storageKey: "concepts_settings"
-    }
-    // other sections
-  };
-
-
+function App() {
   return (
-    <ChatBot settings={settings} />
+    <div className="h-screen w-screen bg-gray-200 flex items-center justify-center">
+      <div className="bg-white w-[90%] max-w-md aspect-[9/16] rounded-lg shadow-md">
+        <h1 className="text-center text-2xl font-bold">Hello, Tailwind with TypeScript!</h1>
+        <MyChatBot />
+      </div>
+    </div>
   );
-};
+}
 
-export default MyComponent;
+export default App;
