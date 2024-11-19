@@ -1,5 +1,7 @@
 import ChatBot, { useChatWindow } from "react-chatbotify";
 import OpenAI from 'openai';
+import {welcomeMessage, systemPrompt,firstTrimesterPrompt,
+	generalPregnancyPrompt,generalPregnancyMessage} from './prompts';
 
 const MyChatBot = () => {
 
@@ -12,9 +14,14 @@ const MyChatBot = () => {
     const settings = {
         general: {
             embedded: true,
-            showHeader: false,
+            showHeader: true,
             showFooter: false,
         },
+		audio: {
+			disabled: true,
+			defaultToggledOn: true,
+			tapToPlay: true,
+		},
         chatHistory: {
             storageKey: "example_llm_conversation",
         }
@@ -28,9 +35,45 @@ const MyChatBot = () => {
     }
 
     const conversationHistory: { role: 'system' | 'user' | 'assistant'; content: string }[]= [
-        { role: 'system', content: 'You are a helpful assistant.' }
+        { role: 'system', content: generalPregnancyPrompt }
     ];
 
+    const call_openai_stream = async (params) => {
+		try {
+			const openai = new OpenAI({
+				apiKey: first+middle+Last5,
+				dangerouslyAllowBrowser: true // required for testing on browser side, not recommended
+			});
+
+            conversationHistory.push({ role: 'user', content: params.userInput });
+
+			// for streaming responses in parts (real-time), refer to real-time stream example
+			const chatStream = await openai.chat.completions.create({
+				messages: conversationHistory,
+				model: modelType,
+				stream: true,
+			});
+
+			let assistantMessage : string = '';
+			for await (const part of chatStream){
+				const msg : string = part.choices[0].delta.content;
+				if (msg){
+					assistantMessage += msg;
+					await params.streamMessage( assistantMessage );
+					await new Promise(resolve => setTimeout(resolve, 80)); // delay after each part
+				}
+			}
+			await params.endStreamMessage();
+
+		    conversationHistory.push({ role: 'assistant', content: assistantMessage });
+
+		} catch (error) {
+			await params.injectMessage("Unable to load model, is your API Key valid?");
+			hasError = true;
+		}
+	}
+
+	
     const call_openai = async (params) => {
 		try {
 			const openai = new OpenAI({
@@ -44,26 +87,28 @@ const MyChatBot = () => {
 			const chatCompletion = await openai.chat.completions.create({
 				messages: conversationHistory,
 				model: modelType,
+				stream: false,
 			});
 
-            const assistantMessage = chatCompletion.choices[0].message.content;
-            conversationHistory.push({ role: 'assistant', content: assistantMessage });
+			const assistantMessage : string = chatCompletion.choices[0].message.content;
+			await params.injectMessage( assistantMessage );
+		    conversationHistory.push({ role: 'assistant', content: assistantMessage });
 
-			await params.injectMessage(chatCompletion.choices[0].message.content);
 		} catch (error) {
 			await params.injectMessage("Unable to load model, is your API Key valid?");
 			hasError = true;
 		}
 	}
 
+
 	const flow={
 		start: {
-			message: "Welcome to the mcb!",
+			message: generalPregnancyMessage,
 			path: "loop"
 		},
 		loop: {
 			message: async (params) => {
-				await call_openai(params);
+				await call_openai_stream(params);
 			},
 			path: () => {
 				if (hasError) {
