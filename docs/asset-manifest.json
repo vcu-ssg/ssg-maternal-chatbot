@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.fb0d5035.css",
-    "main.js": "/static/js/main.f89e3b3b.js",
-    "static/js/453.c1b40db4.chunk.js": "/static/js/453.c1b40db4.chunk.js",
-    "index.html": "/index.html",
-    "main.fb0d5035.css.map": "/static/css/main.fb0d5035.css.map",
-    "main.f89e3b3b.js.map": "/static/js/main.f89e3b3b.js.map",
-    "453.c1b40db4.chunk.js.map": "/static/js/453.c1b40db4.chunk.js.map"
+    "main.css": "/ssg-maternal-chatbot/static/css/main.fb0d5035.css",
+    "main.js": "/ssg-maternal-chatbot/static/js/main.c05a596d.js",
+    "static/js/453.c1b40db4.chunk.js": "/ssg-maternal-chatbot/static/js/453.c1b40db4.chunk.js",
+    "index.html": "/ssg-maternal-chatbot/index.html",
+    "main.fb0d5035.css.map": "/ssg-maternal-chatbot/static/css/main.fb0d5035.css.map",
+    "main.c05a596d.js.map": "/ssg-maternal-chatbot/static/js/main.c05a596d.js.map",
+    "453.c1b40db4.chunk.js.map": "/ssg-maternal-chatbot/static/js/453.c1b40db4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fb0d5035.css",
-    "static/js/main.f89e3b3b.js"
+    "static/js/main.c05a596d.js"
   ]
 }
