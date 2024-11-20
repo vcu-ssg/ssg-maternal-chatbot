@@ -23,7 +23,14 @@ You are a friendly assistant. Greet the user and ask how you can help.
 export const welcomeMessage = `Welcome to the Maternal CareBot.
   We're going to help you prepare for upcoming meetings with your clinician.
   Please take a few moments to consider how you're feeling both physically and emotionally.
-  Let me know when you're ready to start.
+`;
+
+export const firstTrimesterWelcome = `FIRST TRIMESTER SURVEY
+This survey of 10 questions is designed to help you prepare for a meeting with your clinician during your first trimester.
+    At the end of the survey, you'll be presented with a set of 3 topics for your upcoming clincian visit.
+    Take a screenshot and save so that you've got the questions on your phone!
+    Please take a few moments to consider how you're feeling both physically and emotionally.
+    Take your time, breath, and let me know when you're ready to start. (enter OK or something)
 `;
 
 export const firstTrimesterPrompt = `
@@ -39,6 +46,7 @@ topics to discuss with my clinician. You ask a question, I offer an answer.
 to two followup questions on any single topic if it seems that I have more to say.
     The goal after 10 questions is for you to provide me with a list of three 
 important things I should discuss with my clinician.
+    Each question should be numbered to help me track where we are in the game.
     Ok - I'm ready, please ask your first question.  Start your response
 with "Okay, let's get started" and then ask your first question.
 `;
@@ -77,6 +85,7 @@ export const prompts = {
   system: systemPrompt,
   welcome2 : welcomeMessage,
   welcome: welcomePrompt,
+  firstTrimesterw : firstTrimesterWelcome,
   firstTrimester : firstTrimesterPrompt,
   secondTrimester : secondTrimesterPrompt,
   generalPregnancyMessage : generalPregnancyMessage,

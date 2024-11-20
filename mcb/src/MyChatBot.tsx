@@ -1,6 +1,6 @@
 import ChatBot, { useChatWindow } from "react-chatbotify";
 import OpenAI from 'openai';
-import {welcomeMessage, systemPrompt,firstTrimesterPrompt,
+import {welcomeMessage, systemPrompt,firstTrimesterPrompt,firstTrimesterWelcome,
 	generalPregnancyPrompt,generalPregnancyMessage} from './prompts';
 
 const MyChatBot = () => {
@@ -23,8 +23,15 @@ const MyChatBot = () => {
 			tapToPlay: true,
 		},
         chatHistory: {
+			disabled: true,
             storageKey: "example_llm_conversation",
-        }
+        },
+		header: {
+			title: "Maternal CareBot",
+		},
+		notification: {
+			disabled: true,
+		}
     }
     const styles = {
         chatWindowStyle: {
@@ -35,7 +42,7 @@ const MyChatBot = () => {
     }
 
     const conversationHistory: { role: 'system' | 'user' | 'assistant'; content: string }[]= [
-        { role: 'system', content: generalPregnancyPrompt }
+        { role: 'system', content: firstTrimesterPrompt }
     ];
 
     const call_openai_stream = async (params) => {
@@ -100,11 +107,63 @@ const MyChatBot = () => {
 		}
 	}
 
+	const helpOptions = ["Survey", "First Visit", "First Trimester", "Second Trimester"];
 
 	const flow={
 		start: {
-			message: generalPregnancyMessage,
-			path: "loop"
+			message: welcomeMessage,
+			path: "showOptions",
+			chatDisabled: true,
+			transition: {duration:0},
+		},
+		showOptions: {
+			message: "Select activity below ...",
+			options: helpOptions,
+			chatDisabled: true,
+			path: "processOptions",
+		},
+		processOptions: {
+			transition: {duration:0},
+			chatDisabled: true,
+			path: async (params) => {
+				let link :string = "";
+				switch (params.userInput) {
+					case "Survey": link = "survey"; break;
+					case "First Visit" : link = "firstVisit"; break;
+					case "First Trimester" : link = "firstTrimester"; break;
+					case "Second Trimester" : link = "secondTrimester"; break;
+					default: link = "unknownInput";
+				}
+				setTimeout(() => { }, 500)
+				return link
+			}
+		},
+		survey: {
+			message: "Welcome survey",
+			path: async(params) => {
+				await params.injectMessage("(survey gathering prelim info and store it)");
+				setTimeout(() => { }, 500)
+				return "showOptions";
+			},
+			chatDisabled: true,
+			transition: {duration: 500},
+
+		},
+		firstVisit: {
+			message: "First visit survey (empty)",
+			path: "showOptions",
+			chatDisabled: true,
+			transition: {duration: 500},
+		},
+		firstTrimester: {
+			message: firstTrimesterWelcome,
+			path: "loop",
+		},
+		secondTrimester: {
+			message: "Second trimester survey",
+			path: "showOptions",
+			chatDisabled: true,
+			transition: {duration: 500},
 		},
 		loop: {
 			message: async (params) => {

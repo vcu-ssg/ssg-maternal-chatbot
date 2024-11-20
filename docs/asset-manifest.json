@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ssg-maternal-chatbot/static/css/main.fb0d5035.css",
-    "main.js": "/ssg-maternal-chatbot/static/js/main.c05a596d.js",
+    "main.css": "/ssg-maternal-chatbot/static/css/main.779bf219.css",
+    "main.js": "/ssg-maternal-chatbot/static/js/main.c1cad8a4.js",
     "static/js/453.c1b40db4.chunk.js": "/ssg-maternal-chatbot/static/js/453.c1b40db4.chunk.js",
     "index.html": "/ssg-maternal-chatbot/index.html",
-    "main.fb0d5035.css.map": "/ssg-maternal-chatbot/static/css/main.fb0d5035.css.map",
-    "main.c05a596d.js.map": "/ssg-maternal-chatbot/static/js/main.c05a596d.js.map",
+    "main.779bf219.css.map": "/ssg-maternal-chatbot/static/css/main.779bf219.css.map",
+    "main.c1cad8a4.js.map": "/ssg-maternal-chatbot/static/js/main.c1cad8a4.js.map",
     "453.c1b40db4.chunk.js.map": "/ssg-maternal-chatbot/static/js/453.c1b40db4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fb0d5035.css",
-    "static/js/main.c05a596d.js"
+    "static/css/main.779bf219.css",
+    "static/js/main.c1cad8a4.js"
   ]
 }
