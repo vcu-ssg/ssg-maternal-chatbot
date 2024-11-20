@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ssg-maternal-chatbot/static/css/main.779bf219.css",
-    "main.js": "/ssg-maternal-chatbot/static/js/main.9dae153e.js",
+    "main.js": "/ssg-maternal-chatbot/static/js/main.aa23d1ee.js",
     "static/js/453.c1b40db4.chunk.js": "/ssg-maternal-chatbot/static/js/453.c1b40db4.chunk.js",
     "index.html": "/ssg-maternal-chatbot/index.html",
     "main.779bf219.css.map": "/ssg-maternal-chatbot/static/css/main.779bf219.css.map",
-    "main.9dae153e.js.map": "/ssg-maternal-chatbot/static/js/main.9dae153e.js.map",
+    "main.aa23d1ee.js.map": "/ssg-maternal-chatbot/static/js/main.aa23d1ee.js.map",
     "453.c1b40db4.chunk.js.map": "/ssg-maternal-chatbot/static/js/453.c1b40db4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.779bf219.css",
-    "static/js/main.9dae153e.js"
+    "static/js/main.aa23d1ee.js"
   ]
 }

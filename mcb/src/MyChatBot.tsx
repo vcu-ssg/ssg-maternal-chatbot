@@ -112,7 +112,7 @@ const MyChatBot = () => {
 		}
 	}
 
-	const helpOptions = ["Survey", "First visit", "First Trimester", "Second Trimester"];
+	const helpOptions = ["Survey", "First Visit", "First Trimester", "Second Trimester"];
 
 	const flow={
 		start: {
