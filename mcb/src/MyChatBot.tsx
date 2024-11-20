@@ -9,7 +9,8 @@ const MyChatBot = () => {
 	const middle: string = "-svcacct-v8nPqm2OvMH8g3cQjEzP_t4GTY3eQ9rOeuhFgvbACa318w2izDsUMXl71qi4c6aC7djxCwIT3BlbkFJT7ol-egsomVZm4MNk5T-2jntv5stmrm820LMbGiAFn3m3W_ZxcP5t_Xg3o54ZS7j7k";
     const Last5 : string = "-OgqgA";
 	const modelType : "gpt-3.5-turbo" | "gpt-4" = "gpt-3.5-turbo";
-	let hasError :boolean = false;
+	let hasError : boolean = false;
+	let returnToMenu : boolean = false;
 
     const settings = {
         general: {
@@ -72,7 +73,11 @@ const MyChatBot = () => {
 			}
 			await params.endStreamMessage();
 
-		    conversationHistory.push({ role: 'assistant', content: assistantMessage });
+			returnToMenu = assistantMessage.includes("menu");
+			if (!returnToMenu) {
+		    	conversationHistory.push({ role: 'assistant', content: assistantMessage });
+			};
+
 
 		} catch (error) {
 			await params.injectMessage("Unable to load model, is your API Key valid?");
@@ -107,11 +112,17 @@ const MyChatBot = () => {
 		}
 	}
 
-	const helpOptions = ["Survey", "First Visit", "First Trimester", "Second Trimester"];
+	const helpOptions = ["Survey", "First visit", "First Trimester", "Second Trimester"];
 
 	const flow={
 		start: {
 			message: welcomeMessage,
+			path: "showOptions",
+			chatDisabled: true,
+			transition: {duration:0},
+		},
+		stopLoop:{
+			message: "Conversation stopped. Returning to menu.",
 			path: "showOptions",
 			chatDisabled: true,
 			transition: {duration:0},
@@ -172,6 +183,10 @@ const MyChatBot = () => {
 			path: () => {
 				if (hasError) {
 					return "start"
+				}
+				if (returnToMenu){
+					returnToMenu = false;
+					return "stopLoop"
 				}
 				return "loop"
 			}

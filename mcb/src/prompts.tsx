@@ -28,7 +28,8 @@ export const welcomeMessage = `Welcome to the Maternal CareBot.
 export const firstTrimesterWelcome = `FIRST TRIMESTER SURVEY
 This survey of 10 questions is designed to help you prepare for a meeting with your clinician during your first trimester.
     At the end of the survey, you'll be presented with a set of 3 topics for your upcoming clincian visit.
-    Take a screenshot and save so that you've got the questions on your phone!
+    When the survey is over, take a screenshot and save the recommendations for later!
+    You can enter "menu" at any time to stop the converation and return to the main menu.
     Please take a few moments to consider how you're feeling both physically and emotionally.
     Take your time, breath, and let me know when you're ready to start. (enter OK or something)
 `;
